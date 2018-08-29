@@ -13,9 +13,22 @@
 #   limitations under the License.
 
 ##################################################################################################
-# Details service
+# Details service //currently as dns cannot support multiple kubernetes clusters, need to create 
+# detail service in cluster #1 in order to other services can lookup it through dns
 ##################################################################################################
-
+apiVersion: v1
+kind: Service
+metadata:
+  name: details
+  labels:
+    app: details
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: details
+---
 ##################################################################################################
 # Ratings service
 ##################################################################################################
